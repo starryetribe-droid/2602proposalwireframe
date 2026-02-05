@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
-import BottomButton from '../components/BottomButton';
+import Header from '../../components/Header';
+import BottomButton from '../../components/BottomButton';
 import { Home, Info } from 'lucide-react';
 
 interface TravelCountrySelectProps {
@@ -22,25 +22,25 @@ const TravelCountrySelect: React.FC<TravelCountrySelectProps> = ({ onBack }) => 
     setSearchText(e.target.value);
     // If user types, clear explicit selection unless it matches exactly
     if (selectedCountry && e.target.value !== selectedCountry) {
-        setSelectedCountry(null);
+      setSelectedCountry(null);
     }
   };
 
   return (
     <>
-      <Header 
-        title="여행정보" 
-        onBack={onBack} 
+      <Header
+        title="여행정보"
+        onBack={onBack}
         rightIcon={
           <button className="p-1 -mr-1 text-gray-800 hover:bg-gray-100 rounded-full transition-colors">
             <Home size={24} strokeWidth={1.5} />
           </button>
         }
       />
-      
+
       <main className="flex-1 px-5 pt-4 pb-32 flex flex-col">
         <h2 className="text-2xl font-bold text-gray-900 mb-3 leading-tight">
-          어느 나라로<br/>여행가세요?
+          어느 나라로<br />여행가세요?
         </h2>
         <p className="text-sm text-gray-500 mb-8">
           여러 나라를 여행한다면, 그 중 한 곳을 알려주세요.
@@ -65,11 +65,10 @@ const TravelCountrySelect: React.FC<TravelCountrySelectProps> = ({ onBack }) => 
               <button
                 key={country}
                 onClick={() => handleCountrySelect(country)}
-                className={`px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 ${
-                  isSelected
+                className={`px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 ${isSelected
                     ? 'border-gray-900 bg-white text-gray-900 ring-1 ring-gray-900'
                     : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
-                }`}
+                  }`}
               >
                 {country}
               </button>
@@ -86,8 +85,8 @@ const TravelCountrySelect: React.FC<TravelCountrySelectProps> = ({ onBack }) => 
         </div>
       </main>
 
-      <BottomButton 
-        disabled={!searchText} 
+      <BottomButton
+        disabled={!searchText}
         onClick={() => alert(`다음 단계로 이동: ${searchText}`)}
       />
     </>

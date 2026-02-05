@@ -1,17 +1,19 @@
 import React from 'react';
-import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
+import Header from '../../components/Header';
 import { ChevronRight, Layout } from 'lucide-react';
 
 interface ScreenListProps {
-  screens:Array<{ id: string; title: string }>;
-  onNavigate: (screenId: string) => void;
+  screens: Array<{ id: string; path: string; title: string }>;
 }
 
-const ScreenList: React.FC<ScreenListProps> = ({ screens, onNavigate }) => {
+const ScreenList: React.FC<ScreenListProps> = ({ screens }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Header title="화면 목록" showInfo={false} />
-      
+
       <main className="flex-1 px-5 py-6">
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-gray-400 mb-2">PAGES</h2>
@@ -19,7 +21,7 @@ const ScreenList: React.FC<ScreenListProps> = ({ screens, onNavigate }) => {
             {screens.map((screen) => (
               <button
                 key={screen.id}
-                onClick={() => onNavigate(screen.id)}
+                onClick={() => navigate(screen.path)}
                 className="flex items-center justify-between w-full p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-gray-200 hover:shadow-md transition-all active:scale-[0.99]"
               >
                 <div className="flex items-center gap-4">
@@ -33,9 +35,9 @@ const ScreenList: React.FC<ScreenListProps> = ({ screens, onNavigate }) => {
             ))}
           </div>
         </div>
-        
+
         <div className="text-center mt-12">
-            <p className="text-xs text-gray-300">Design System Applied</p>
+          <p className="text-xs text-gray-300">Design System Applied</p>
         </div>
       </main>
     </>
