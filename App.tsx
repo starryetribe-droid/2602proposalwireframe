@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import InsuranceCalculator from './screens/InsuranceCalculator/index';
 import ScreenList from './screens/ScreenList/index';
 import TravelCountrySelect from './screens/TravelCountrySelect/index';
@@ -26,7 +26,7 @@ const SCREENS = [
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route
           path="/"
@@ -37,15 +37,14 @@ function App() {
           }
         />
         {SCREENS.map((screen) => (
-          <React.Fragment key={screen.id}>
-            <Route
-              path={screen.path}
-              element={<ScreenWrapper component={screen.component} />}
-            />
-          </React.Fragment>
+          <Route
+            key={screen.id}
+            path={screen.path}
+            element={<ScreenWrapper component={screen.component} />}
+          />
         ))}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
